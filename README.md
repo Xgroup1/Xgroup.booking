@@ -83,37 +83,42 @@
     © 2025 XGROUP. Alle rechten voorbehouden.
   </footer>
 
+  <!-- EmailJS script -->
   <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
   <script>
-    // EmailJS instellingen
-    const SERVICE_ID = 'service_1bozkdd'; // jouw service ID
-    const TEMPLATE_ID = 'template_pbk318x'; // jouw template ID
-    const USER_ID = '5fTvRF4xrvdOmA77d'; // jouw public key
+    const SERVICE_ID = 'service_1bozkdd';
+    const TEMPLATE_ID = 'template_pbk318x';
+    const USER_ID = '5fTvRF4xrvdOmA77d';
 
-    (function(){ if(window.emailjs){ emailjs.init(USER_ID); }})();
+    emailjs.init(USER_ID);
 
     const form = document.getElementById('taxiForm');
     const statusDiv = document.getElementById('status');
 
     form.addEventListener('submit', function(e){
       e.preventDefault();
+
       const data = {
         name: form.name.value,
-        pickup_address: form.pickup_address.value,
+        pickup_address: form.pickup.value,
         destination: form.destination.value,
         datetime: form.datetime.value,
         phone: form.phone.value
       };
+
       statusDiv.innerHTML = '<div class="notify">Verzenden...</div>';
+
       emailjs.send(SERVICE_ID, TEMPLATE_ID, data)
         .then(() => {
           statusDiv.innerHTML = '<div class="notify success">Boeking verstuurd!</div>';
           form.reset();
-        }, (err) => {
+        })
+        .catch((err) => {
           statusDiv.innerHTML = '<div class="notify error">Error bij verzenden.</div>';
-          console.error(err);
+          console.error('EmailJS fout:', err);
         });
     });
   </script>
 </body>
 </html>
+

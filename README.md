@@ -25,7 +25,7 @@
     .section h2 { font-size:28px; margin-bottom:20px; }
     .contact-form { background: var(--card); padding:20px; border-radius: var(--radius); }
     .contact-form label { display:block; margin-top:12px; color: var(--muted); }
-    .contact-form input, .contact-form textarea { width:100%; padding:10px; border:1px solid rgba(255,255,255,0.1); border-radius: var(--radius); background:transparent; color:inherit; margin-top:6px; }
+    .contact-form input { width:100%; padding:10px; border:1px solid rgba(255,255,255,0.1); border-radius: var(--radius); background:transparent; color:inherit; margin-top:6px; }
     .contact-form button { margin-top:20px; padding:12px 20px; border:none; background: var(--accent); color:#0b0c10; font-weight:bold; border-radius: var(--radius); cursor:pointer; }
     .contact-note { margin-top:10px; font-size:14px; color: var(--muted); }
     footer { text-align:center; padding:20px 0; color: var(--muted); }
@@ -98,6 +98,7 @@
     form.addEventListener('submit', function(e){
       e.preventDefault();
 
+      // Data moet exact matchen met je EmailJS template variabelen
       const data = {
         name: form.name.value,
         pickup_address: form.pickup.value,
@@ -121,4 +122,3 @@
   </script>
 </body>
 </html>
-
